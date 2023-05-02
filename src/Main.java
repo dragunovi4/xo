@@ -10,7 +10,6 @@ public class Main {
         vyvodPole(pole);
 
         while (!konecIgry) {
-         //   vyvodPole(pole);
 
             if (kolvoHodov % 2 == 0) {
                 if (moiHod(pole, "X")) {
