@@ -7,20 +7,23 @@ public class Main {
         String[][] pole = sobstvennoPole();
         int kolvoHodov = 0;
         boolean konecIgry = false;
+        vyvodPole(pole);
 
         while (!konecIgry) {
-            vyvodPole(pole);
+         //   vyvodPole(pole);
 
             if (kolvoHodov % 2 == 0) {
                 if (moiHod(pole, "X")) {
                     kolvoHodov++;
                     System.out.println("Ваш ход");
+                    vyvodPole(pole);
                 }
                 konecIgry = konecIgry(pole, "X", kolvoHodov);
             } else {
                 if (botaHod(pole, "O")) {
                     kolvoHodov++;
                     System.out.println("Ход Бота");
+                    vyvodPole(pole);
                 }
                 konecIgry = konecIgry(pole, "O", kolvoHodov);
             }
