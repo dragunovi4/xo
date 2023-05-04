@@ -5,29 +5,37 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         String[][] pole = sobstvennoPole();
-        int kolvoHodov = 0;
         boolean konecIgry = false;
         vyvodPole(pole);
-
+        String symbol = "X";
+//
+//        while (!konecIgry) {
+//
+//            if (symbol.equals("X") ? moiHod(pole, symbol) : botaHod(pole, symbol)) {
+//                System.out.println(symbol.equals("X") ? "Ваш ход" : "Ход Бота");
+//                vyvodPole(pole);
+//                konecIgry = konecIgry(pole, symbol);
+//                symbol = symbol.equals("X") ? "O" : "X";
+//            }
+//        }
         while (!konecIgry) {
+            boolean cheiHod = symbol.equals("X");
+            boolean uspehHoda = false;
 
-            if (kolvoHodov % 2 == 0) {
-                if (moiHod(pole, "X")) {
-                    kolvoHodov++;
-                    System.out.println("Ваш ход");
-                    vyvodPole(pole);
-                }
-                konecIgry = konecIgry(pole, "X", kolvoHodov);
+            if (cheiHod) {
+                uspehHoda = moiHod(pole, symbol);
             } else {
-                if (botaHod(pole, "O")) {
-                    kolvoHodov++;
-                    System.out.println("Ход Бота");
-                    vyvodPole(pole);
-                }
-                konecIgry = konecIgry(pole, "O", kolvoHodov);
+                uspehHoda = botaHod(pole, symbol);
+            }
+
+            if (uspehHoda) {
+                System.out.println(cheiHod ? "Ваш ход" : "Ход Бота");
+                vyvodPole(pole);
+                konecIgry = konecIgry(pole, symbol);
+                symbol = cheiHod ? "O" : "X";
             }
         }
-          vyvodPole(pole);
+        vyvodPole(pole);
     }
 
     public static String[][] sobstvennoPole() {
@@ -83,10 +91,11 @@ public class Main {
         return true;
     }
 
-    public static boolean konecIgry(String[][] pole, String hod, int kolvoHodov) {
+    public static boolean konecIgry(String[][] pole, String hod) {
         boolean varikPobedit = pobeda(pole, hod);
         boolean etoX = hod.equals("X");
         boolean etoO = hod.equals("O");
+        boolean nichiy = uslovieNichi(pole);
 
         if (varikPobedit && etoX) {
             System.out.println("ПОБЕДА!");
@@ -94,7 +103,7 @@ public class Main {
         } else if (varikPobedit && etoO) {
             System.out.println("ПОРАЖЕНИЕ!");
             return true;
-        } else if (kolvoHodov == 9) {
+        } else if (nichiy) {
             System.out.println("НИЧЬЯ!");
             return true;
         }
@@ -102,6 +111,16 @@ public class Main {
         return false;
     }
 
+    public static boolean uslovieNichi(String[][]pole) {
+        for (int i = 0; i < pole.length; i++) {
+            for (int j = 0; j < pole[i].length; j++) {
+                if (!pole[i][j].equals("X") && !pole[i][j].equals("O")) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     public static boolean pobeda(String[][]pole, String symbol) {
         for (int i = 0; i < pole.length; i++) {
