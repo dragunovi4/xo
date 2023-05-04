@@ -27,7 +27,7 @@ public class Main {
                 konecIgry = konecIgry(pole, "O", kolvoHodov);
             }
         }
-          vyvodPole(pole);
+        vyvodPole(pole);
     }
 
     public static String[][] sobstvennoPole() {
@@ -83,36 +83,54 @@ public class Main {
         return true;
     }
 
+    //    public static boolean konecIgry(String[][] pole, String hod, int kolvoHodov) {
+//        if (pobeda(pole, hod)) {
+//            if (hod.equals("X")) {
+//                System.out.println("ПОБЕДА!");
+//            } else if (hod.equals("O")) {
+//                System.out.println("ПОРАЖЕНИЕ!");
+//            }
+//            return true;
+//        }
+//        if (kolvoHodov == 9) {
+//            System.out.println("НИЧЬЯ!");
+//            return true;
+//        }
+//        return false;
+//    }
     public static boolean konecIgry(String[][] pole, String hod, int kolvoHodov) {
-        if (pobeda(pole, hod)) {
-            if (hod.equals("X")) {
-                System.out.println("ПОБЕДА!");
-            } else if (hod.equals("O")) {
-                System.out.println("ПОРАЖЕНИЕ");
-            }
+        boolean varikPobedit = pobeda(pole, hod);
+        boolean etoX = hod.equals("X");
+        boolean etoO = hod.equals("O");
+
+        if (varikPobedit && etoX) {
+            System.out.println("ПОБЕДА!");
+            return true;
+        } else if (varikPobedit && etoO) {
+            System.out.println("ПОРАЖЕНИЕ!");
+            return true;
+        } else if (kolvoHodov == 9) {
+            System.out.println("НИЧЬЯ!");
             return true;
         }
-        if (kolvoHodov == 9) {
-            System.out.println("НИЧЬЯ");
+
+        return false;
+    }
+    public static boolean pobeda(String[][]pole, String symbol){
+        for (int i = 0; i < pole.length; i++) {
+            String[] stroka = pole[i];
+            if (stroka[0].equals(symbol) && stroka[1].equals(symbol) && stroka[2].equals(symbol)) {
+                return true;
+            }
+
+            if (pole[0][i].equals(symbol) && pole[1][i].equals(symbol) && pole[2][i].equals(symbol)) {
+                return true;
+            }
+        }
+        if ((pole[0][0].equals(symbol) && pole[1][1].equals(symbol) && pole[2][2].equals(symbol))
+                || (pole[0][2].equals(symbol) && pole[1][1].equals(symbol) && pole[2][0].equals(symbol))) {
             return true;
         }
         return false;
     }
-        public static boolean pobeda(String[][]pole, String symbol){
-            for (int i = 0; i < pole.length; i++) {
-                String[] stroka = pole[i];
-                if (stroka[0].equals(symbol) && stroka[1].equals(symbol) && stroka[2].equals(symbol)) {
-                    return true;
-                }
-
-                if (pole[0][i].equals(symbol) && pole[1][i].equals(symbol) && pole[2][i].equals(symbol)) {
-                    return true;
-                }
-            }
-            if ((pole[0][0].equals(symbol) && pole[1][1].equals(symbol) && pole[2][2].equals(symbol))
-                    || (pole[0][2].equals(symbol) && pole[1][1].equals(symbol) && pole[2][0].equals(symbol))) {
-                return true;
-            }
-            return false;
-        }
 }
