@@ -1,3 +1,5 @@
+package main.java;
+
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -15,17 +17,16 @@ public class Main {
                 playerMove = !playerMove;
             }
         }
-
         vyvodPole(pole);
     }
 
     public static String[][] sobstvennoPole() {
 
-        int[][] pole1 = new int[][] {
-            {1,  1,  1},
-            {0, -1,  0},
-            {0,  0,  0}
-        };
+      /*  int[][] pole1 = new int[][] {
+            {1,  2,  3},
+            {4, 5,  6},
+            {7,  8,  9}
+        }; */
 
         String[][] pole = new String[3][3];
         pole[0][0] = "1";
@@ -41,9 +42,21 @@ public class Main {
         return pole;
     }
 
-    public static void vyvodPole(String[][]pole){
-        for (String[] i : pole) {
-            System.out.println(Arrays.toString(i).replaceAll("\\[|\\]|\\,|\\ ", ""));
+//    public static void vyvodPole(String[][]pole){
+//        for (String[] i : pole) {
+//            System.out.println(Arrays.toString(i).replaceAll("[\\[\\], ]", ""));
+//        }
+//    }
+
+    public static void vyvodPole(String[][]pole) {
+        System.out.println("-------------");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(pole[i][j] + " | ");
+            }
+            System.out.println();
+            System.out.println("-------------");
         }
     }
 
@@ -65,10 +78,10 @@ public class Main {
 
     public static boolean botaHod(String[][]pole){
         Random sluchainost = new Random();
-        int hb = sluchainost.nextInt(pole.length * pole[0].length) + 1;
+        int hod = sluchainost.nextInt(pole.length * pole[0].length) + 1;
 
-        int a = (hb - 1) / pole.length;
-        int b = (hb - 1) % pole.length;
+        int a = (hod - 1) / pole.length;
+        int b = (hod - 1) % pole.length;
 
 
         if (pole[a][b].equals("X") || pole[a][b].equals("O")) {
@@ -84,7 +97,7 @@ public class Main {
         boolean nichiy = uslovieNichi(pole);
 
         if (varikPobedit && cheyHod) {
-            System.out.println("ПОБЕДА!");
+               System.out.println("ПОБЕДА!");
             return true;
         } else if (varikPobedit && !cheyHod) {
             System.out.println("ПОРАЖЕНИЕ!");
@@ -98,9 +111,9 @@ public class Main {
     }
 
     public static boolean uslovieNichi(String[][]pole) {
-        for (int i = 0; i < pole.length; i++) {
-            for (int j = 0; j < pole[i].length; j++) {
-                if (!pole[i][j].equals("X") && !pole[i][j].equals("O")) {
+        for (String[] strings : pole) {
+            for (String string : strings) {
+                if (!string.equals("X") && !string.equals("O")) {
                     return false;
                 }
             }

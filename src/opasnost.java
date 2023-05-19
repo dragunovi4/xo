@@ -2,8 +2,8 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class opasnost{
+    public static void opasnost(String[] args) {
         String[][] pole = sobstvennoPole();
         boolean konecIgry = false;
         vyvodPole(pole);
