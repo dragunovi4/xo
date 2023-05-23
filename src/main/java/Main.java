@@ -1,6 +1,5 @@
 package main.java;
 
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -9,12 +8,13 @@ public class Main {
         int[][] pole = sobstvennoPole();
         vyvodPole(pole);
 
-        boolean gameOver = false;
+        boolean gameOver;
         boolean playerMove = true;
 
-        while (!gameOver) {
+        while (true) {
             if (playerMove ? moiHod(pole) : botaHod(pole)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
+
                 vyvodPole(pole);
 
                 gameOver = konecIgry(pole, playerMove);
@@ -39,13 +39,11 @@ public class Main {
 
     public static int[][] sobstvennoPole() {
 
-         int[][] pole = new int[][] {
-                 {1,  2,  3},
-                 {4, 5,  6},
-                 {7,  8,  9}
-           };
-
-        return pole;
+        return new int[][] {
+                {1,  2,  3},
+                {4, 5,  6},
+                {7,  8,  9}
+          };
     }
 
     public static void vyvodPole(int[][]pole) {
@@ -99,7 +97,7 @@ public class Main {
         if (varikPobedit && cheyHod) {
                System.out.println("ПОБЕДА!");
             return true;
-        } else if (varikPobedit && !cheyHod) {
+        } else if (varikPobedit) {
             System.out.println("ПОРАЖЕНИЕ!");
             return true;
         } else if (nichiy) {
