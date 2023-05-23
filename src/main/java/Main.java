@@ -6,77 +6,77 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String[][] pole = sobstvennoPole();
+        int[][] pole = sobstvennoPole();
         vyvodPole(pole);
 
-        for (boolean playerMove = true; !konecIgry(pole, playerMove);) {
+        boolean gameOver = false;
+        boolean playerMove = true;
+
+        while (!gameOver) {
+            if (playerMove ? moiHod(pole) : botaHod(pole)) {
+                System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
+                vyvodPole(pole);
+
+                gameOver = konecIgry(pole, playerMove);
+
+                if (gameOver) {
+                    break;
+                }
+
+                playerMove = !playerMove;
+            }
+        }
+    /*  for (boolean playerMove = true; !konecIgry(pole, playerMove);) {
             if (playerMove ? moiHod(pole) : botaHod(pole)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
                 vyvodPole(pole);
 
                 playerMove = !playerMove;
             }
-        }
+        } */
         vyvodPole(pole);
     }
 
-    public static String[][] sobstvennoPole() {
+    public static int[][] sobstvennoPole() {
 
-      /*  int[][] pole1 = new int[][] {
-            {1,  2,  3},
-            {4, 5,  6},
-            {7,  8,  9}
-        }; */
-
-        String[][] pole = new String[3][3];
-        pole[0][0] = "1";
-        pole[0][1] = "2";
-        pole[0][2] = "3";
-        pole[1][0] = "4";
-        pole[1][1] = "5";
-        pole[1][2] = "6";
-        pole[2][0] = "7";
-        pole[2][1] = "8";
-        pole[2][2] = "9";
+         int[][] pole = new int[][] {
+                 {1,  2,  3},
+                 {4, 5,  6},
+                 {7,  8,  9}
+           };
 
         return pole;
     }
 
-//    public static void vyvodPole(String[][]pole){
-//        for (String[] i : pole) {
-//            System.out.println(Arrays.toString(i).replaceAll("[\\[\\], ]", ""));
-//        }
-//    }
-
-    public static void vyvodPole(String[][]pole) {
-        System.out.println("-------------");
+    public static void vyvodPole(int[][]pole) {
+        System.out.println("----------------------");
         for (int i = 0; i < 3; i++) {
-            System.out.print("| ");
+            System.out.print(" |  ");
             for (int j = 0; j < 3; j++) {
-                System.out.print(pole[i][j] + " | ");
+                System.out.print(pole[i][j] + "  |  ");
             }
             System.out.println();
-            System.out.println("-------------");
+            System.out.println("----------------------");
         }
     }
 
-    public static boolean moiHod(String[][]pole){
+    public static boolean moiHod(int[][]pole){
         Scanner scannera = new Scanner(System.in);
         int hod = scannera.nextInt();
 
         int i = (hod - 1) / pole.length;
         int j = (hod - 1) % pole.length;
 
-        if (pole[i][j].equals("X") || pole[i][j].equals("O")) {
+        if (pole[i][j] == 11 || pole[i][j] == -11) {
             System.out.println("ЗАНЯТО");
             return false;
         }
 
-        pole[i][j] = "X";
+        pole[i][j] = 11;
         return true;
     }
 
-    public static boolean botaHod(String[][]pole){
+    public static boolean botaHod(int[][]pole){
         Random sluchainost = new Random();
         int hod = sluchainost.nextInt(pole.length * pole[0].length) + 1;
 
@@ -84,16 +84,16 @@ public class Main {
         int b = (hod - 1) % pole.length;
 
 
-        if (pole[a][b].equals("X") || pole[a][b].equals("O")) {
+        if (pole[a][b] == 11 || pole[a][b] == -11) {
             return false;
         }
 
-        pole[a][b] = "O";
+        pole[a][b] = -11;
         return true;
     }
 
-    public static boolean konecIgry(String[][] pole, boolean cheyHod) {
-        boolean varikPobedit = pobeda(pole, cheyHod ? "X" : "O");
+    public static boolean konecIgry(int[][] pole, boolean cheyHod) {
+        boolean varikPobedit = pobeda(pole, cheyHod ? 11 : -11);
         boolean nichiy = uslovieNichi(pole);
 
         if (varikPobedit && cheyHod) {
@@ -110,10 +110,10 @@ public class Main {
         return false;
     }
 
-    public static boolean uslovieNichi(String[][]pole) {
-        for (String[] strings : pole) {
-            for (String string : strings) {
-                if (!string.equals("X") && !string.equals("O")) {
+    public static boolean uslovieNichi(int[][]pole) {
+        for (int[] strings : pole) {
+            for (int string : strings) {
+                if (string != 11 && string != -11) {
                     return false;
                 }
             }
@@ -121,18 +121,18 @@ public class Main {
         return true;
     }
 
-    public static boolean pobeda(String[][]pole, String symbol) {
+    public static boolean pobeda(int[][]pole, int symbol) {
         for (int i = 0; i < pole.length; i++) {
-            String[] stroka = pole[i];
-            if (stroka[0].equals(symbol) && stroka[1].equals(symbol) && stroka[2].equals(symbol)) {
+            int[] stroka = pole[i];
+            if (stroka[0] == symbol && stroka[1] == symbol && stroka[2] == symbol) {
                 return true;
             }
 
-            if (pole[0][i].equals(symbol) && pole[1][i].equals(symbol) && pole[2][i].equals(symbol)) {
+            if (pole[0][i] == symbol && pole[1][i] == symbol && pole[2][i] == symbol) {
                 return true;
             }
         }
-        return (pole[0][0].equals(symbol) && pole[1][1].equals(symbol) && pole[2][2].equals(symbol))
-                || (pole[0][2].equals(symbol) && pole[1][1].equals(symbol) && pole[2][0].equals(symbol));
+        return (pole[0][0] == symbol && pole[1][1] == symbol && pole[2][2] == symbol)
+                || (pole[0][2] == symbol && pole[1][1] == symbol && pole[2][0] == symbol);
     }
 }
