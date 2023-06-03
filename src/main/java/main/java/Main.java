@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int[][] pole = sobstvennoPole();
+        char[][] pole = sobstvennoPole();
         vyvodPole(pole);
 
         boolean gameOver;
@@ -37,16 +37,16 @@ public class Main {
         vyvodPole(pole);
     }
 
-    public static int[][] sobstvennoPole() {
+    public static char[][] sobstvennoPole() {
 
-        return new int[][] {
-                {1,  2,  3},
-                {4, 5,  6},
-                {7,  8,  9}
+        return new char[][] {
+                {'+', '+', '+'},
+                {'+', '+', '+'},
+                {'+', '+', '+'}
           };
     }
 
-    public static void vyvodPole(int[][]pole) {
+    public static void vyvodPole(char[][] pole) {
         System.out.println("----------------------");
         for (int i = 0; i < 3; i++) {
             System.out.print(" |  ");
@@ -58,23 +58,25 @@ public class Main {
         }
     }
 
-    public static boolean moiHod(int[][]pole){
+    public static boolean moiHod(char[][] pole){
         Scanner scannera = new Scanner(System.in);
         int hod = scannera.nextInt();
 
         int i = (hod - 1) / pole.length;
         int j = (hod - 1) % pole.length;
 
-        if (pole[i][j] == 11 || pole[i][j] == -11) {
+        if (pole[i][j] == 'X' || pole[i][j] == 'O') {
             System.out.println("ЗАНЯТО");
             return false;
         }
 
-        pole[i][j] = 11;
+        char cimbol = 'X';
+
+        pole[i][j] = cimbol;
         return true;
     }
 
-    public static boolean botaHod(int[][]pole){
+    public static boolean botaHod(char[][] pole){
         Random sluchainost = new Random();
         int hod = sluchainost.nextInt(pole.length * pole[0].length) + 1;
 
@@ -82,16 +84,18 @@ public class Main {
         int b = (hod - 1) % pole.length;
 
 
-        if (pole[a][b] == 11 || pole[a][b] == -11) {
+        if (pole[a][b] == 'X' || pole[a][b] == 'O') {
             return false;
         }
 
-        pole[a][b] = -11;
+        char cimbol = 'O';
+
+        pole[a][b] = cimbol;
         return true;
     }
 
-    public static boolean konecIgry(int[][] pole, boolean cheyHod) {
-        boolean varikPobedit = pobeda(pole, cheyHod ? 11 : -11);
+    public static boolean konecIgry(char[][] pole, boolean cheyHod) {
+        boolean varikPobedit = pobeda(pole, cheyHod ? 'X' : 'O');
         boolean nichiy = uslovieNichi(pole);
 
         if (varikPobedit && cheyHod) {
@@ -108,10 +112,10 @@ public class Main {
         return false;
     }
 
-    public static boolean uslovieNichi(int[][]pole) {
-        for (int[] strings : pole) {
-            for (int string : strings) {
-                if (string != 11 && string != -11) {
+    public static boolean uslovieNichi(char[][]pole) {
+        for (char[] strings : pole) {
+            for (char string : strings) {
+                if (string != 'X' && string != 'O') {
                     return false;
                 }
             }
@@ -119,9 +123,9 @@ public class Main {
         return true;
     }
 
-    public static boolean pobeda(int[][]pole, int symbol) {
+    public static boolean pobeda(char[][]pole, int symbol) {
         for (int i = 0; i < pole.length; i++) {
-            int[] stroka = pole[i];
+            char[] stroka = pole[i];
             if (stroka[0] == symbol && stroka[1] == symbol && stroka[2] == symbol) {
                 return true;
             }
