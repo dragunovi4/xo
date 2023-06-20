@@ -5,19 +5,21 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        char[][] pole = sobstvennoPole();
-        vyvodPole(pole);
+
+        Polushko polushkoObject = new Polushko();
+        polushkoObject.vyvodPole();
+
 
         boolean gameOver;
         boolean playerMove = true;
 
         while (true) {
-            if (playerMove ? moiHod(pole) : botaHod(pole)) {
+            if (playerMove ? moiHod(polushkoObject.getPole()) : botaHod(polushkoObject.getPole())) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
-                vyvodPole(pole);
+                polushkoObject.vyvodPole();
 
-                gameOver = konecIgry(pole, playerMove);
+                gameOver = konecIgry(polushkoObject.getPole(), playerMove);
 
                 if (gameOver) {
                     break;
@@ -26,36 +28,7 @@ public class Main {
                 playerMove = !playerMove;
             }
         }
-    /*  for (boolean playerMove = true; !konecIgry(pole, playerMove);) {
-            if (playerMove ? moiHod(pole) : botaHod(pole)) {
-                System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
-                vyvodPole(pole);
-
-                playerMove = !playerMove;
-            }
-        } */
-        vyvodPole(pole);
-    }
-
-    public static char[][] sobstvennoPole() {
-
-        return new char[][] {
-                {'+', '+', '+'},
-                {'+', '+', '+'},
-                {'+', '+', '+'}
-          };
-    }
-
-    public static void vyvodPole(char[][] pole) {
-        System.out.println("----------------------");
-        for (int i = 0; i < 3; i++) {
-            System.out.print(" |  ");
-            for (int j = 0; j < 3; j++) {
-                System.out.print(pole[i][j] + "  |  ");
-            }
-            System.out.println();
-            System.out.println("----------------------");
-        }
+        polushkoObject.vyvodPole();
     }
 
     public static boolean moiHod(char[][] pole){
