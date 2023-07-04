@@ -9,12 +9,11 @@ public class Main {
         Polushko polushkoObject = new Polushko();
         polushkoObject.vyvodPole();
 
-
         boolean gameOver;
         boolean playerMove = true;
 
         while (true) {
-            if (playerMove ? moiHod(polushkoObject.getPole()) : botaHod(polushkoObject.getPole())) {
+            if (playerMove ? igrok.moiHod(polushkoObject.getPole()) : botSopernik.botaHod(polushkoObject.getPole())) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
                 polushkoObject.vyvodPole();
@@ -31,41 +30,6 @@ public class Main {
         polushkoObject.vyvodPole();
     }
 
-    public static boolean moiHod(char[][] pole){
-        Scanner scannera = new Scanner(System.in);
-        int hod = scannera.nextInt();
-
-        int i = (hod - 1) / pole.length;
-        int j = (hod - 1) % pole.length;
-
-        if (pole[i][j] == 'X' || pole[i][j] == 'O') {
-            System.out.println("ЗАНЯТО");
-            return false;
-        }
-
-        char cimbol = 'X';
-
-        pole[i][j] = cimbol;
-        return true;
-    }
-
-    public static boolean botaHod(char[][] pole){
-        Random sluchainost = new Random();
-        int hod = sluchainost.nextInt(pole.length * pole[0].length) + 1;
-
-        int a = (hod - 1) / pole.length;
-        int b = (hod - 1) % pole.length;
-
-
-        if (pole[a][b] == 'X' || pole[a][b] == 'O') {
-            return false;
-        }
-
-        char cimbol = 'O';
-
-        pole[a][b] = cimbol;
-        return true;
-    }
 
     public static boolean konecIgry(char[][] pole, boolean cheyHod) {
         boolean varikPobedit = pobeda(pole, cheyHod ? 'X' : 'O');
