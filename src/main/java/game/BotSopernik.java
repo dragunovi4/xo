@@ -1,8 +1,8 @@
-package main.java;
+package game;
 
 import java.util.Random;
 
-public class botSopernik {
+public class BotSopernik {
     /*
     Механика работы бота на рандомную клетку с проверкой и механикой при условии занятой клетки
      */

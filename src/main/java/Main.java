@@ -1,4 +1,6 @@
-package main.java;
+import game.Game;
+import game.Igrok;
+import game.Polushko;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -8,28 +10,10 @@ public class Main {
     //логика игрового процесса
     public static void main(String[] args) {
 
-        Polushko polushkoObject = new Polushko();
-        polushkoObject.vyvodPole();
+        Game game = new Game();
+        game.play();
 
-        boolean gameOver;
-        boolean playerMove = true;
 
-        while (true) {
-            if (playerMove ? igrok.moiHod(polushkoObject.getPole()) : botSopernik.botaHod(polushkoObject.getPole())) {
-                System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
-
-                polushkoObject.vyvodPole();
-
-                gameOver = konecIgry(polushkoObject.getPole(), playerMove);
-
-                if (gameOver) {
-                    break;
-                }
-
-                playerMove = !playerMove;
-            }
-        }
-        polushkoObject.vyvodPole();
     }
 
     //условия окончания игры
