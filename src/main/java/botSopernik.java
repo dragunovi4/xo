@@ -3,7 +3,9 @@ package main.java;
 import java.util.Random;
 
 public class botSopernik {
-
+    /*
+    Механика работы бота на рандомную клетку с проверкой и механикой при условии занятой клетки
+     */
     public static boolean botaHod(char[][] pole){
         Random sluchainost = new Random();
         int hod = sluchainost.nextInt(pole.length * pole[0].length) + 1;

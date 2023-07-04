@@ -1,6 +1,9 @@
 package main.java;
 
 public class Polushko {
+    /*
+    Инициализация и механика игрового поля с условиями вывода
+     */
 
     private final char[][] pole;
 

@@ -4,6 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+
+    //логика игрового процесса
     public static void main(String[] args) {
 
         Polushko polushkoObject = new Polushko();
@@ -30,7 +32,7 @@ public class Main {
         polushkoObject.vyvodPole();
     }
 
-
+    //условия окончания игры
     public static boolean konecIgry(char[][] pole, boolean cheyHod) {
         boolean varikPobedit = pobeda(pole, cheyHod ? 'X' : 'O');
         boolean nichiy = uslovieNichi(pole);
@@ -48,7 +50,7 @@ public class Main {
 
         return false;
     }
-
+    //условия для возникновения ничьи
     public static boolean uslovieNichi(char[][]pole) {
         for (char[] strings : pole) {
             for (char string : strings) {
@@ -59,7 +61,7 @@ public class Main {
         }
         return true;
     }
-
+    //условия для определения победы
     public static boolean pobeda(char[][]pole, int symbol) {
         for (int i = 0; i < pole.length; i++) {
             char[] stroka = pole[i];
