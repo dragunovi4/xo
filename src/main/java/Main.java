@@ -71,7 +71,7 @@ public class Main {
         boolean varikPobedit = pobeda(pole, cheyHod ? 'X' : 'O');
         boolean nichiy = uslovieNichi(pole);
 
-        if (varikPobedit && cheyHod) {
+        if (varikPobedit & cheyHod) {
                System.out.println("ПОБЕДА!");
             return true;
         } else if (varikPobedit) {
