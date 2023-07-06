@@ -6,21 +6,22 @@ public class BotSopernik {
     /*
     Механика работы бота на рандомную клетку с проверкой и механикой при условии занятой клетки
      */
-    public static boolean botaHod(char[][] pole){
+    public static boolean botaHod(Polushko pole){
         Random sluchainost = new Random();
-        int hod = sluchainost.nextInt(pole.length * pole[0].length) + 1;
+        int hod = sluchainost.nextInt(pole.LENGTH * Polushko.LENGTH) + 1;
 
-        int a = (hod - 1) / pole.length;
-        int b = (hod - 1) % pole.length;
+        Kletka cell = pole.sdelatHod(
+                (hod - 1) / Polushko.LENGTH,
+                (hod - 1) % Polushko.LENGTH
+        );
 
-
-        if (pole[a][b] == 'X' || pole[a][b] == 'O') {
-            return false;
-        }
-
-        char cimbol = 'O';
-
-        pole[a][b] = cimbol;
+//        if (pole[x][y] == 'X' || pole[x][y] == 'O') {
+//            return false;
+//        }
+//
+//        char cimbol = 'O';
+//
+//        pole[x][y] = cimbol;
         return true;
     }
 }

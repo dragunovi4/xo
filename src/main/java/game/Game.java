@@ -8,6 +8,7 @@ public class Game {
     public Game() {
         pole = new Polushko();
         igrok = new Igrok();
+
     }
 
     public void play() {
@@ -19,12 +20,12 @@ public class Game {
         boolean playerMove = true;
 
         while (true) {
-            if (playerMove ? igrok.moiHod(pole) : botSopernik.botaHod(pole.getPole())) {
+            if (playerMove ? igrok.moiHod(pole) : BotSopernik.botaHod(pole)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
                 pole.vyvodPole();
 
-                gameOver = konecIgry(pole.getPole(), playerMove);
+                gameOver = GameUslovia.konecIgry(pole.getPole(), playerMove);
 
                 if (gameOver) {
                     break;

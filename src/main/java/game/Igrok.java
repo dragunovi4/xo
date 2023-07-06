@@ -15,8 +15,7 @@ public class Igrok {
                 (hod - 1) % Polushko.LENGTH
         );
 
-
-//        if (pole[i][j] == 'X' || pole[i][j] == 'O') {
+        //        if (pole[i][j] == 'X' || pole[i][j] == 'O') {
 //            System.out.println("ЗАНЯТО");
 //            return false;
 //        }

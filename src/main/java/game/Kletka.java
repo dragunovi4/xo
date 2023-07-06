@@ -20,9 +20,7 @@ public class Kletka {
         }
 
     }
-
-    public void useSymbol(char symbol) {
-
+    public void useSymbol(KletkaState symbol) {
         this.state = symbol;
     }
 
