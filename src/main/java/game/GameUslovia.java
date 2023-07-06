@@ -18,7 +18,7 @@ public class GameUslovia {
 
         return false;
     }
-    //условия для возникновения ничьи
+
     public static boolean uslovieNichi(Kletka[][] pole) {
         for (Kletka[] strings : pole) {
             for (Kletka string : strings) {
@@ -29,7 +29,7 @@ public class GameUslovia {
         }
         return true;
     }
-    //условия для определения победы
+
     public static boolean pobeda(Kletka[][] pole, char c) {
         for (int i = 0; i < Polushko.LENGTH; i++) {
             Kletka symbol = pole[i][0];

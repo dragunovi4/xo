@@ -3,9 +3,7 @@ package game;
 import java.util.Scanner;
 
 public class Igrok {
-    /*
-    Механика работы игрока с отслеживанием нужного поля и присваивания клетке символ игрока с проверкой и механикой при условии занятой клетки
-     */
+
     public boolean moiHod(Polushko pole) {
         Scanner scanner = new Scanner(System.in);
         int hod = scanner.nextInt();

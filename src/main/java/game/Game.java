@@ -4,10 +4,12 @@ public class Game {
 
     Polushko pole;
     Igrok igrok;
+    BotSopernik botSopernik;
 
     public Game() {
         pole = new Polushko();
         igrok = new Igrok();
+        botSopernik = new BotSopernik();
 
     }
 
@@ -20,7 +22,7 @@ public class Game {
         boolean playerMove = true;
 
         while (true) {
-            if (playerMove ? igrok.moiHod(pole) : BotSopernik.botaHod(pole)) {
+            if (playerMove ? igrok.moiHod(pole) : botSopernik.botaHod(pole)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
                 pole.vyvodPole();

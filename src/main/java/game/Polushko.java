@@ -1,13 +1,6 @@
 package game;
 
 public class Polushko {
-    /*
-    Инициализация и механика игрового поля с условиями вывода
-     */
-
-    /**
-     * Константа, ширина поля
-     */
     public static final int LENGTH = 3;
 
 
