@@ -8,18 +8,15 @@ public class BotSopernik {
         Random sluchainost = new Random();
         int hod = sluchainost.nextInt(pole.LENGTH * Polushko.LENGTH) + 1;
 
-        Kletka cell = pole.sdelatHod(
+        Kletka[][] cell = pole.sdelatHod(
                 (hod - 1) / Polushko.LENGTH,
-                (hod - 1) % Polushko.LENGTH
-        );
+                (hod - 1) % Polushko.LENGTH,
+                KletkaState.O);
 
-//        if (pole[x][y] == 'X' || pole[x][y] == 'O') {
-//            return false;
-//        }
-//
-//        char cimbol = 'O';
-//
-//        pole[x][y] = cimbol;
+        if (cell.equals(KletkaState.X) || cell.equals(KletkaState.O)) {
+            return false;
+        }
+
         return true;
     }
 }

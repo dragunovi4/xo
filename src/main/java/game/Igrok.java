@@ -8,19 +8,22 @@ public class Igrok {
         Scanner scanner = new Scanner(System.in);
         int hod = scanner.nextInt();
 
-        Kletka cell = pole.sdelatHod(
-                (hod - 1) / Polushko.LENGTH,
-                (hod - 1) % Polushko.LENGTH
-        );
+        if (hod <= 0 || hod >= 10) {
+            throw new IllegalArgumentException("Некорректные координаты хода.");
+        }
 
-        //        if (pole[i][j] == 'X' || pole[i][j] == 'O') {
-//            System.out.println("ЗАНЯТО");
-//            return false;
-//        }
-//
-//        char cimbol = 'X';
-//
-//        pole[i][j] = cimbol;
+        Kletka[][] cell = pole.sdelatHod(
+                (hod - 1) / Polushko.LENGTH,
+                (hod - 1) % Polushko.LENGTH,
+                    KletkaState.X);
+
+
+        if (cell.equals(KletkaState.X) || cell.equals(KletkaState.O)) {
+            System.out.println("ЗАНЯТО");
+            return false;
+        }
+
+
         return true;
     }
 }

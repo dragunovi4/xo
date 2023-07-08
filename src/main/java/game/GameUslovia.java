@@ -2,7 +2,7 @@ package game;
 
 public class GameUslovia {
     public static boolean konecIgry(Kletka[][] pole, boolean cheyHod) {
-        boolean varikPobedit = pobeda(pole, cheyHod ? 'X' : 'O');
+        boolean varikPobedit = pobeda(pole, cheyHod ? KletkaState.X : KletkaState.O);
         boolean nichiy = uslovieNichi(pole);
 
         if (varikPobedit & cheyHod) {
@@ -22,15 +22,15 @@ public class GameUslovia {
     public static boolean uslovieNichi(Kletka[][] pole) {
         for (Kletka[] strings : pole) {
             for (Kletka string : strings) {
-                if (strings.equals(KletkaState.X) && string.equals(KletkaState.O)) {
-                    return false;
+                if (string.equals(KletkaState.X) || string.equals(KletkaState.O)) {
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
-    public static boolean pobeda(Kletka[][] pole, char c) {
+    public static boolean pobeda(Kletka[][] pole, KletkaState state) {
         for (int i = 0; i < Polushko.LENGTH; i++) {
             Kletka symbol = pole[i][0];
             if ((pole[i][0] == symbol) && (pole[i][1] == symbol) && (pole[i][2] == symbol)) {

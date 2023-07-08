@@ -6,7 +6,6 @@ public class Kletka {
     private int x;
     private int y;
 
-    //пустая по умолчанию
     public Kletka(int x, int y) {
         this.x = x;
         this.y = y;
@@ -22,6 +21,7 @@ public class Kletka {
     }
     public void useSymbol(KletkaState symbol) {
         this.state = symbol;
+
     }
 
 }

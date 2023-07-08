@@ -18,32 +18,18 @@ public class Polushko {
         return pole;
     }
 
-    public Kletka sdelatHod(int x, int y) {
-        // Найти клетку в массиве pole и попробовать сделать ход c проверкой
-        Kletka kletochka = null;
-        for (int i = 0; i < LENGTH; i++) {
-            for (int j = 0; j < LENGTH; j++) {
-                if (i == x && j == y) {
-                    kletochka = pole[i][j];
-                }
-            }
-        }
-
-        // исключения, если нужно сругаться
-
-        if (x < 0 || x >= LENGTH || y < 0 || y >= LENGTH) {
-            throw new IllegalArgumentException("Некорректные координаты хода.");
-        }
+    public Kletka[][] sdelatHod(int x, int y, KletkaState kletkaState) {
 
         Kletka kletka = pole[x][y];
 
-        if (kletochka == null) {
+        kletka.useSymbol(kletkaState);
+
+        if (kletka.equals(KletkaState.X) || kletka.equals(KletkaState.O)) {
             throw new IllegalStateException("Выбранная клетка уже занята.");
         }
 
-        kletka.useSymbol(KletkaState.X);
 
-        return pole[x][y]; // ...
+        return pole;
     }
 
     public void vyvodPole () {
