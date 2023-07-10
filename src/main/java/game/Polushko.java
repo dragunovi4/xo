@@ -22,11 +22,11 @@ public class Polushko {
 
         Kletka kletka = pole[x][y];
 
-        kletka.useSymbol(kletkaState);
-
-        if (kletka.equals(KletkaState.X) || kletka.equals(KletkaState.O)) {
+        if ((kletka.equals(KletkaState.X)) || kletka.equals(KletkaState.O)) {
             throw new IllegalStateException("Выбранная клетка уже занята.");
         }
+
+        kletka.useSymbol(kletkaState);
 
 
         return pole;

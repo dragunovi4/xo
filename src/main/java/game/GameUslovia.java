@@ -5,7 +5,7 @@ public class GameUslovia {
         boolean varikPobedit = pobeda(pole, cheyHod ? KletkaState.X : KletkaState.O);
         boolean nichiy = uslovieNichi(pole);
 
-        if (varikPobedit & cheyHod) {
+        if (varikPobedit && cheyHod) {
             System.out.println("ПОБЕДА!");
             return true;
         } else if (varikPobedit) {
@@ -30,23 +30,19 @@ public class GameUslovia {
         return false;
     }
 
-    public static boolean pobeda(Kletka[][] pole, KletkaState state) {
-        for (int i = 0; i < Polushko.LENGTH; i++) {
-            Kletka symbol = pole[i][0];
-            if ((pole[i][0] == symbol) && (pole[i][1] == symbol) && (pole[i][2] == symbol)) {
+    public static boolean pobeda(Kletka[][]pole, KletkaState getState) {
+        for (int i = 0; i < pole.length; i++) {
+            Kletka[] stroka = pole[i];
+            if (stroka[0].equals(getState) && stroka[1].equals(getState) && stroka[2].equals(getState)) {
                 return true;
             }
-            if ((pole[0][i] == symbol) && (pole[1][i] == symbol) && (pole[2][i] == symbol)) {
+
+            if (pole[0][i].equals(getState) && pole[1][i].equals(getState) && pole[2][i].equals(getState)) {
                 return true;
             }
         }
-        Kletka symbol = pole[1][1];
-        if ((pole[0][0] == symbol) && (pole[1][1] == symbol) && (pole[2][2] == symbol)) {
-            return true;
-        }
-        if ((pole[0][2] == symbol) && (pole[1][1] == symbol) && (pole[2][0] == symbol)) {
-            return true;
-        }
-        return false;
+        return (pole[0][0].equals(getState) && pole[1][1].equals(getState) && pole[2][2].equals(getState))
+                || (pole[0][2].equals(getState) && pole[1][1].equals(getState) && pole[2][0].equals(getState));
     }
+
 }

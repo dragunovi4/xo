@@ -12,18 +12,12 @@ public class Igrok {
             throw new IllegalArgumentException("Некорректные координаты хода.");
         }
 
-        Kletka[][] cell = pole.sdelatHod(
+        pole.sdelatHod(
                 (hod - 1) / Polushko.LENGTH,
                 (hod - 1) % Polushko.LENGTH,
                     KletkaState.X);
 
-
-        if (cell.equals(KletkaState.X) || cell.equals(KletkaState.O)) {
-            System.out.println("ЗАНЯТО");
-            return false;
-        }
-
-
         return true;
+
     }
 }

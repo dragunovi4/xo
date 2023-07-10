@@ -16,13 +16,12 @@ public class Game {
     public void play() {
         pole.vyvodPole();
 
-        // botSopernik...
 
         boolean gameOver;
         boolean playerMove = true;
 
         while (true) {
-            if (playerMove ? igrok.moiHod(pole) : botSopernik.botaHod(pole)) {
+            if (playerMove ? igrok.moiHod(pole) : BotSopernik.botaHod(pole)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
                 pole.vyvodPole();
