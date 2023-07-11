@@ -1,18 +1,32 @@
 package game;
 
+import game.exc.IncorrectMoveException;
+
 import java.util.Random;
+
+import static game.Polushko.LENGTH;
 
 public class BotSopernik {
 
     public static boolean botaHod(Polushko pole){
         Random sluchainost = new Random();
-        int hod = sluchainost.nextInt(pole.LENGTH * pole.LENGTH) + 1;
 
 
-        pole.sdelatHod(
-                (hod - 1) / Polushko.LENGTH,
-                (hod - 1) % Polushko.LENGTH,
-                KletkaState.O);
+        boolean correctMove = true;
+        do {
+            int hod = sluchainost.nextInt(LENGTH * LENGTH) + 1;
+
+            try {
+                pole.sdelatHod(
+                        (hod - 1) / LENGTH,
+                        (hod - 1) % LENGTH,
+                        KletkaState.O);
+
+                correctMove = true;
+            } catch (IncorrectMoveException e) {
+                correctMove = false;
+            }
+        } while (!correctMove);
 
         return true;
 
