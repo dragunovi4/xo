@@ -22,27 +22,27 @@ public class GameUslovia {
     public static boolean uslovieNichi(Kletka[][] pole) {
         for (Kletka[] strings : pole) {
             for (Kletka string : strings) {
-                if (string.equals(KletkaState.X) || string.equals(KletkaState.O)) {
-                    return true;
+                 if (string.getState().equals(KletkaState.EMPTY)) {
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
 
-    public static boolean pobeda(Kletka[][]pole, KletkaState getState) {
+    public static boolean pobeda(Kletka[][]pole, KletkaState getZnachenie) {
         for (int i = 0; i < pole.length; i++) {
             Kletka[] stroka = pole[i];
-            if (stroka[0].equals(getState) && stroka[1].equals(getState) && stroka[2].equals(getState)) {
+            if (stroka[0].getState().equals(getZnachenie) && stroka[1].getState().equals(getZnachenie) && stroka[2].getState().equals(getZnachenie)) {
                 return true;
             }
 
-            if (pole[0][i].equals(getState) && pole[1][i].equals(getState) && pole[2][i].equals(getState)) {
+            if (pole[0][i].getState().equals(getZnachenie) && pole[1][i].getState().equals(getZnachenie) && pole[2][i].getState().equals(getZnachenie)) {
                 return true;
             }
         }
-        return (pole[0][0].equals(getState) && pole[1][1].equals(getState) && pole[2][2].equals(getState))
-                || (pole[0][2].equals(getState) && pole[1][1].equals(getState) && pole[2][0].equals(getState));
+        return (pole[0][0].getState().equals(getZnachenie) && pole[1][1].getState().equals(getZnachenie) && pole[2][2].getState().equals(getZnachenie))
+                || (pole[0][2].getState().equals(getZnachenie) && pole[1][1].getState().equals(getZnachenie) && pole[2][0].getState().equals(getZnachenie));
     }
 
 }

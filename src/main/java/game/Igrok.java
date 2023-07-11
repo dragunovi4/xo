@@ -12,6 +12,7 @@ public class Igrok {
             throw new IllegalArgumentException("Некорректные координаты хода.");
         }
 
+
         pole.sdelatHod(
                 (hod - 1) / Polushko.LENGTH,
                 (hod - 1) % Polushko.LENGTH,

@@ -11,14 +11,9 @@ public class Kletka {
         this.y = y;
     }
 
-    public String getState() {
-        switch (state) {
-            case O: return "O";
-            case X: return "X";
-            default: return " ";
+    public KletkaState getState() {
+        return state;
         }
-
-    }
     public void useSymbol(KletkaState symbol) {
         this.state = symbol;
 

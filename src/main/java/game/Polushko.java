@@ -18,29 +18,37 @@ public class Polushko {
         return pole;
     }
 
-    public Kletka[][] sdelatHod(int x, int y, KletkaState kletkaState) {
+    public Kletka[][] sdelatHod(int x, int y, KletkaState getZnachenie) {
 
         Kletka kletka = pole[x][y];
+        KletkaState status = kletka.getState();
 
-        if ((kletka.equals(KletkaState.X)) || kletka.equals(KletkaState.O)) {
-            throw new IllegalStateException("Выбранная клетка уже занята.");
+        try {
+            if (status == KletkaState.X || status == KletkaState.O) {
+                throw new IllegalStateException("Выбранная клетка уже занята.");
+            }
+            kletka.useSymbol(getZnachenie);
+
+        } catch (IllegalStateException e) {
+            System.out.println(e + "\nВыберите другую клетку.");
+            return pole;
         }
 
-        kletka.useSymbol(kletkaState);
 
 
         return pole;
     }
 
+
     public void vyvodPole () {
-        System.out.println("----------------------");
+        System.out.println("--------------------");
         for (int i = 0; i < 3; i++) {
             System.out.print(" |  ");
             for (int j = 0; j < 3; j++) {
-                System.out.print(pole[i][j].getState() + "  |  ");
+                System.out.print(pole[i][j].getState().getZnachenie() + "  |  ");
             }
             System.out.println();
-            System.out.println("----------------------");
+            System.out.println("---------------------");
         }
     }
 }

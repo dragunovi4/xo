@@ -8,6 +8,7 @@ public class BotSopernik {
         Random sluchainost = new Random();
         int hod = sluchainost.nextInt(pole.LENGTH * pole.LENGTH) + 1;
 
+
         pole.sdelatHod(
                 (hod - 1) / Polushko.LENGTH,
                 (hod - 1) % Polushko.LENGTH,
@@ -17,3 +18,7 @@ public class BotSopernik {
 
     }
 }
+
+//        if (pole[a][b] == 'X' || pole[a][b] == 'O') {
+//                return false;
+//                }
