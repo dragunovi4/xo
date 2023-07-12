@@ -1,5 +1,7 @@
 package game;
 
+import game.exc.IncorrectMoveException;
+
 public class Polushko {
     public static final int LENGTH = 3;
 
@@ -18,22 +20,16 @@ public class Polushko {
         return pole;
     }
 
-    public Kletka[][] sdelatHod(int x, int y, KletkaState getZnachenie) {
+    public Kletka[][] sdelatHod(int x, int y, KletkaState getZnachenie) throws IncorrectMoveException {
 
         Kletka kletka = pole[x][y];
         KletkaState status = kletka.getState();
 
-        try {
-            if (status == KletkaState.X || status == KletkaState.O) {
-                throw new IllegalStateException("Выбранная клетка уже занята.");
-            }
-            kletka.useSymbol(getZnachenie);
-
-        } catch (IllegalStateException e) {
-            System.out.println(e + "\nВыберите другую клетку.");
-            return pole;
+        if (status == KletkaState.X || status == KletkaState.O) {
+            throw new IncorrectMoveException("Выбранная клетка уже занята.");
         }
 
+        kletka.useSymbol(getZnachenie);
 
 
         return pole;
