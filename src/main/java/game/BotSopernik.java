@@ -15,10 +15,6 @@ public class BotSopernik {
         do {
             int hod = sluchainost.nextInt(pole.LENGTH * pole.LENGTH) + 1;
 
-            if (hod <= 0 || hod >= 10) {
-                throw new IllegalArgumentException("Некорректные координаты хода.");
-            }
-
             try {
                 pole.sdelatHod(
                         (hod - 1) / Polushko.LENGTH,

@@ -1,5 +1,7 @@
 package game;
 
+import game.exc.IncorrectMoveStateException;
+
 public class Game {
 
     Polushko pole;
@@ -13,7 +15,7 @@ public class Game {
 
     }
 
-    public void play() {
+    public void play() throws IncorrectMoveStateException {
         pole.vyvodPole();
 
 
