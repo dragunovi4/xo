@@ -6,6 +6,6 @@ public class IncorrectMoveException extends Exception {
     }
 
     public String toString() {
-        return "Некорректный ход: " + getMessage();
+        return getMessage();
     }
 }
