@@ -15,7 +15,7 @@ public class Game {
 
     }
 
-    public void play() throws IncorrectMoveStateException {
+    public void play() {
         pole.vyvodPole();
 
 
