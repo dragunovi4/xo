@@ -16,7 +16,7 @@ public class Game {
         pole.vyvodPole();
 
 
-        boolean gameOver = false;
+        boolean gameOver = false; //убрать в ебеня
         boolean playerMove = true;
 
         while (!gameOver) {
