@@ -16,10 +16,10 @@ public class Game {
         pole.vyvodPole();
 
 
-        boolean gameOver;
+        boolean gameOver = false;
         boolean playerMove = true;
 
-        while (true) {
+        while (!gameOver) {
             if (playerMove ? igrok.moiHod(pole, KletkaState.X) : botSopernik.botaHod(pole, KletkaState.O)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
@@ -27,9 +27,6 @@ public class Game {
 
                 gameOver = GameUslovia.konecIgry(pole.getPole(), playerMove);
 
-                if (gameOver) {
-                    break;
-                }
 
                 playerMove = !playerMove;
             }
