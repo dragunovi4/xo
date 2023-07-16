@@ -20,6 +20,7 @@ public class Polushko {
         return pole;
     }
 
+
     public Kletka[][] sdelatHod(int x, int y, KletkaState getZnachenie) throws IncorrectMoveException {
 
         Kletka kletka = pole[x][y];
@@ -37,14 +38,14 @@ public class Polushko {
 
 
     public void vyvodPole () {
-        System.out.println("--------------------");
+        System.out.println("--------------------------------");
         for (int i = 0; i < 3; i++) {
             System.out.print(" |  ");
             for (int j = 0; j < 3; j++) {
                 System.out.print(pole[i][j].getState().getZnachenie() + "  |  ");
             }
             System.out.println();
-            System.out.println("---------------------");
+            System.out.println("---------------------------------");
         }
     }
 }

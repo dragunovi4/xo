@@ -1,5 +1,4 @@
 package game;
-
 public class GameUslovia {
     public static boolean konecIgry(Kletka[][] pole, boolean cheyHod) {
         boolean varikPobedit = pobeda(pole, cheyHod ? KletkaState.X : KletkaState.O);
@@ -15,10 +14,8 @@ public class GameUslovia {
             System.out.println("НИЧЬЯ!");
             return true;
         }
-
         return false;
     }
-
     public static boolean uslovieNichi(Kletka[][] pole) {
         for (Kletka[] strings : pole) {
             for (Kletka string : strings) {
@@ -29,14 +26,12 @@ public class GameUslovia {
         }
         return true;
     }
-
     public static boolean pobeda(Kletka[][]pole, KletkaState getZnachenie) {
         for (int i = 0; i < pole.length; i++) {
             Kletka[] stroka = pole[i];
             if (stroka[0].getState().equals(getZnachenie) && stroka[1].getState().equals(getZnachenie) && stroka[2].getState().equals(getZnachenie)) {
                 return true;
             }
-
             if (pole[0][i].getState().equals(getZnachenie) && pole[1][i].getState().equals(getZnachenie) && pole[2][i].getState().equals(getZnachenie)) {
                 return true;
             }

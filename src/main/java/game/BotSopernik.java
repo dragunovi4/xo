@@ -4,7 +4,6 @@ import game.exc.IncorrectMoveException;
 
 import java.util.Random;
 
-
 public class BotSopernik {
 
     public static boolean botaHod(Polushko pole){

@@ -1,5 +1,4 @@
 import game.Game;
-import game.exc.IncorrectMoveStateException;
 
 public class Main {
 

@@ -1,7 +1,5 @@
 package game;
 
-import game.exc.IncorrectMoveStateException;
-
 public class Game {
 
     Polushko pole;
@@ -12,7 +10,6 @@ public class Game {
         pole = new Polushko();
         igrok = new Igrok();
         botSopernik = new BotSopernik();
-
     }
 
     public void play() {
@@ -23,7 +20,7 @@ public class Game {
         boolean playerMove = true;
 
         while (true) {
-            if (playerMove ? igrok.moiHod(pole) : botSopernik.botaHod(pole)) {
+            if (playerMove ? igrok.moiHod(pole, KletkaState.X) : botSopernik.botaHod(pole, KletkaState.O)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
                 pole.vyvodPole();
@@ -38,6 +35,7 @@ public class Game {
             }
         }
         pole.vyvodPole();
+        System.out.println("ПОМЯНЕМ!");
 
     }
 }
