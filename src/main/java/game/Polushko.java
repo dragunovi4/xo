@@ -5,7 +5,7 @@ import game.exc.IncorrectMoveException;
 public class Polushko {
     public static final int LENGTH = 3;
 
-    private Kletka[][] pole;
+    private final Kletka[][] pole;
 
     public Polushko() {
         pole = new Kletka[][]{
@@ -19,7 +19,7 @@ public class Polushko {
         return pole;
     }
 
-    public Kletka[][] sdelatHod(int x, int y, KletkaState getZnachenie) throws IncorrectMoveException {
+    public void sdelatHod(int x, int y, KletkaState getZnachenie) throws IncorrectMoveException {
 
         Kletka kletka = pole[x][y];
         KletkaState status = kletka.getState();
@@ -30,7 +30,6 @@ public class Polushko {
 
         kletka.useSymbol(getZnachenie);
 
-        return pole;
     }
 
     public void vyvodPole () {

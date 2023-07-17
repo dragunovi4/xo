@@ -7,7 +7,7 @@ public abstract class Player {
     protected abstract int hodyra();
     public boolean moiHod(Polushko pole, KletkaState state) {
 
-        boolean korrectnyiHod = true;
+        boolean korrectnyiHod;
 
         do {
 
@@ -32,10 +32,8 @@ public abstract class Player {
             } catch (IncorrectMoveException e) {
                 if (state == KletkaState.X) {
                     System.out.println("WARNING!! " + e.getMessage());
-                korrectnyiHod = false;
-                } else {
-                    korrectnyiHod = false;
                 }
+                korrectnyiHod = false;
             }
         } while (!korrectnyiHod);
 

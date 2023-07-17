@@ -3,7 +3,7 @@ public enum KletkaState {
     X("  X  "),
     O("  O  "),
     EMPTY(" ‡†‡ ");
-    private String znachenie;
+    private final String znachenie;
     KletkaState(String znachenie) {
         this.znachenie = znachenie;
     }
