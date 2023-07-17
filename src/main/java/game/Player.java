@@ -1,9 +1,7 @@
-package game.exc;
+package game;
 
-import game.KletkaState;
-import game.Polushko;
-
-import java.util.Scanner;
+import game.exc.IncorrectMoveException;
+import game.exc.IncorrectMoveStateException;
 
 public abstract class Player {
     protected abstract int hodyra();
@@ -31,14 +29,16 @@ public abstract class Player {
                 System.out.println(e + " Введите число от 1 до 9.");
                 korrectnyiHod = false;
 
-            }catch (IncorrectMoveException e) {
-                System.out.println("WARNING!! " + e.getMessage());
+            } catch (IncorrectMoveException e) {
+                if (state == KletkaState.X) {
+                    System.out.println("WARNING!! " + e.getMessage());
                 korrectnyiHod = false;
+                } else {
+                    korrectnyiHod = false;
+                }
             }
-
         } while (!korrectnyiHod);
 
         return true;
-
     }
 }

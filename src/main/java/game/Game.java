@@ -12,27 +12,22 @@ public class Game {
         botSopernik = new BotSopernik();
     }
 
-    public void play() {
+    public void play( boolean gameOver) {
         pole.vyvodPole();
 
-
-        boolean gameOver = false; //убрать в ебеня
         boolean playerMove = true;
 
         while (!gameOver) {
-            if (playerMove ? igrok.moiHod(pole, KletkaState.X) : botSopernik.botaHod(pole, KletkaState.O)) {
+            if (playerMove ? igrok.moiHod(pole, KletkaState.X) : botSopernik.moiHod(pole, KletkaState.O)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
                 pole.vyvodPole();
 
                 gameOver = GameUslovia.konecIgry(pole.getPole(), playerMove);
 
-
                 playerMove = !playerMove;
             }
         }
         pole.vyvodPole();
-        System.out.println("ПОМЯНЕМ!");
-
     }
 }

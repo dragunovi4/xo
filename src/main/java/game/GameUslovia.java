@@ -39,5 +39,4 @@ public class GameUslovia {
         return (pole[0][0].getState().equals(getZnachenie) && pole[1][1].getState().equals(getZnachenie) && pole[2][2].getState().equals(getZnachenie))
                 || (pole[0][2].getState().equals(getZnachenie) && pole[1][1].getState().equals(getZnachenie) && pole[2][0].getState().equals(getZnachenie));
     }
-
 }
