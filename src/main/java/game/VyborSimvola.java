@@ -3,8 +3,8 @@ package game;
 import java.util.Scanner;
 
 public class VyborSimvola {
-    public KletkaState statusBota;
     public KletkaState statusIgroka;
+    public KletkaState statusBota;
 
     public void vyborSimvola() {
 
