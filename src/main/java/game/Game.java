@@ -12,13 +12,13 @@ public class Game {
         botSopernik = new BotSopernik();
     }
 
-    public void play( boolean gameOver) {
+    public void play( boolean gameOver, KletkaState statusIgroka, KletkaState statusBota) {
         pole.vyvodPole();
 
         boolean playerMove = true;
 
         while (!gameOver) {
-            if (playerMove ? igrok.moiHod(pole, KletkaState.X) : botSopernik.moiHod(pole, KletkaState.O)) {
+            if (playerMove ? igrok.moiHod(pole, statusIgroka) : botSopernik.moiHod(pole, statusBota)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
                 pole.vyvodPole();

@@ -5,10 +5,10 @@ public class GameUslovia {
         boolean nichiy = uslovieNichi(pole);
 
         if (varikPobedit && cheyHod) {
-            System.out.println("ПОБЕДА!");
+            System.out.println("ПОБЕДА \"X\"!");
             return true;
         } else if (varikPobedit) {
-            System.out.println("ПОРАЖЕНИЕ!");
+            System.out.println("ПОБЕДА \"O\"!");
             return true;
         } else if (nichiy) {
             System.out.println("НИЧЬЯ!");
