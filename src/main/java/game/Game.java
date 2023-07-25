@@ -22,8 +22,11 @@ public class Game {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
                 pole.vyvodPole();
-
-                gameOver = GameUslovia.konecIgry(pole.getPole(), playerMove);
+                if (statusIgroka == KletkaState.X) {
+                    gameOver = GameUslovia.konecIgry(pole.getPole(), playerMove);
+                } else {
+                    gameOver = GameUslovia.konecIgruli(pole.getPole(), playerMove);
+                }
 
                 playerMove = !playerMove;
             }

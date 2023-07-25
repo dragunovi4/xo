@@ -1,6 +1,8 @@
 package game;
+
 public class GameUslovia {
     public static boolean konecIgry(Kletka[][] pole, boolean cheyHod) {
+
         boolean varikPobedit = pobeda(pole, cheyHod ? KletkaState.X : KletkaState.O);
         boolean nichiy = uslovieNichi(pole);
 
@@ -9,6 +11,24 @@ public class GameUslovia {
             return true;
         } else if (varikPobedit) {
             System.out.println("ПОБЕДА \"O\"!");
+            return true;
+        } else if (nichiy) {
+            System.out.println("НИЧЬЯ!");
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean konecIgruli(Kletka[][] pole, boolean cheyHod) {
+
+        boolean varikPobedit = pobeda(pole, cheyHod ? KletkaState.O : KletkaState.X);
+        boolean nichiy = uslovieNichi(pole);
+
+        if (varikPobedit && cheyHod) {
+            System.out.println("ПОБЕДА \"O\"!");
+            return true;
+        } else if (varikPobedit) {
+            System.out.println("ПОБЕДА \"X\"!");
             return true;
         } else if (nichiy) {
             System.out.println("НИЧЬЯ!");
