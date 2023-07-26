@@ -3,11 +3,11 @@ package game;
 
 import java.util.Random;
 
-public class BotSopernik extends Player {
+public class Ai extends Player {
     Random sluchainost = new Random();
 
     protected int hodyra() {
-        return sluchainost.nextInt(Polushko.LENGTH * Polushko.LENGTH) + 1;
+        return sluchainost.nextInt(Board.BOARD_WIDTH * Board.BOARD_WIDTH) + 1;
     }
 }
 

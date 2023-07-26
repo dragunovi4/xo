@@ -1,3 +1,5 @@
+import game.Board;
+import game.Mark;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -42,7 +44,7 @@ public class TicTacToe extends Application {
 
         private void initialiseTile() {
             this.setOnMouseClicked(e -> {
-                if (!board.isCrossTurn()) {
+                if (!board.isCrossTurn()) {             //isCrossTurn == cheihod
                     board.placeMark(this.row, this.col);
                     this.update();
                 }
@@ -93,8 +95,8 @@ public class TicTacToe extends Application {
         board = new Board();
         gameBoard.setAlignment(Pos.CENTER);
 
-        for (int row = 0; row < board.getWidth(); row++) {
-            for (int col = 0; col < board.getWidth(); col++) {
+        for (int row = 0; row < board.BOARD_WIDTH; row++) {
+            for (int col = 0; col < board.BOARD_WIDTH; col++) {
                 Tile tile = new Tile(row, col, board.getMarkAt(row, col));
                 GridPane.setConstraints(tile, col, row);
                 gameBoard.getChildren().add(tile);

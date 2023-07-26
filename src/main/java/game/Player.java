@@ -5,7 +5,7 @@ import game.exc.IncorrectMoveStateException;
 
 public abstract class Player {
     protected abstract int hodyra();
-    public boolean moiHod(Polushko pole, KletkaState state) {
+    public boolean moiHod(Board pole, Mark state) {
 
         boolean korrectnyiHod;
 
@@ -19,8 +19,8 @@ public abstract class Player {
                 }
 
                 pole.sdelatHod(
-                        (hod - 1) / Polushko.LENGTH,
-                        (hod - 1) % Polushko.LENGTH,
+                        (hod - 1) / Board.BOARD_WIDTH,
+                        (hod - 1) % Board.BOARD_WIDTH,
                         state);
 
                 korrectnyiHod = true;
@@ -30,7 +30,7 @@ public abstract class Player {
                 korrectnyiHod = false;
 
             } catch (IncorrectMoveException e) {
-                if (state == KletkaState.X) {
+                if (state == Mark.X) {
                     System.out.println("WARNING!! " + e.getMessage());
                 }
                 korrectnyiHod = false;

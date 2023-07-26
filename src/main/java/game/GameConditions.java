@@ -1,7 +1,7 @@
 package game;
-public class GameUslovia {
-    public static boolean konecIgry(Kletka[][] pole, boolean cheyHod) {
-        boolean varikPobedit = pobeda(pole, cheyHod ? KletkaState.X : KletkaState.O);
+public class GameConditions {
+    public static boolean konecIgry(Cell[][] pole, boolean cheyHod) {
+        boolean varikPobedit = pobeda(pole, cheyHod ? Mark.X : Mark.O);
         boolean nichiy = uslovieNichi(pole);
 
         if (varikPobedit && cheyHod) {
@@ -16,19 +16,19 @@ public class GameUslovia {
         }
         return false;
     }
-    public static boolean uslovieNichi(Kletka[][] pole) {
-        for (Kletka[] strings : pole) {
-            for (Kletka string : strings) {
-                 if (string.getState().equals(KletkaState.EMPTY)) {
+    public static boolean uslovieNichi(Cell[][] pole) {
+        for (Cell[] strings : pole) {
+            for (Cell string : strings) {
+                 if (string.getState().equals(Mark.BLANK)) {
                     return false;
                 }
             }
         }
         return true;
     }
-    public static boolean pobeda(Kletka[][]pole, KletkaState getZnachenie) {
+    public static boolean pobeda(Cell[][]pole, Mark getZnachenie) {
         for (int i = 0; i < pole.length; i++) {
-            Kletka[] stroka = pole[i];
+            Cell[] stroka = pole[i];
             if (stroka[0].getState().equals(getZnachenie) && stroka[1].getState().equals(getZnachenie) && stroka[2].getState().equals(getZnachenie)) {
                 return true;
             }

@@ -2,14 +2,14 @@ package game;
 
 public class Game {
 
-    Polushko pole;
-    Igrok igrok;
-    BotSopernik botSopernik;
+    Board pole;
+    Gamer gamer;
+    Ai ai;
 
     public Game() {
-        pole = new Polushko();
-        igrok = new Igrok();
-        botSopernik = new BotSopernik();
+        pole = new Board();
+        gamer = new Gamer();
+        ai = new Ai();
     }
 
     public void play( boolean gameOver) {
@@ -18,12 +18,12 @@ public class Game {
         boolean playerMove = true;
 
         while (!gameOver) {
-            if (playerMove ? igrok.moiHod(pole, KletkaState.X) : botSopernik.moiHod(pole, KletkaState.O)) {
+            if (playerMove ? gamer.moiHod(pole, Mark.X) : ai.moiHod(pole, Mark.O)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
                 pole.vyvodPole();
 
-                gameOver = GameUslovia.konecIgry(pole.getPole(), playerMove);
+                gameOver = GameConditions.konecIgry(pole.getPole(), playerMove);
 
                 playerMove = !playerMove;
             }

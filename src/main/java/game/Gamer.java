@@ -2,7 +2,7 @@ package game;
 
 import java.util.Scanner;
 
-public class Igrok extends Player {
+public class Gamer extends Player {
     Scanner scanner = new Scanner(System.in);
 
     @Override
