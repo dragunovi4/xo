@@ -6,21 +6,13 @@ import static game.Mark.*;
 
 public class Board {
     public static final int BOARD_WIDTH = 3;
-    private final Cell[][] board;
-    private boolean crossTurn;
-    private boolean gameOver;
-    private Mark winningMark;
+    private final Cell[][] board = new Cell[BOARD_WIDTH][BOARD_WIDTH];
+    private boolean crossTurn = true;
+    private boolean gameOver = false;
+    private Mark winningMark = BLANK;
 
     public Board() {
-        board = new Cell[BOARD_WIDTH][BOARD_WIDTH];
-        crossTurn = true;
-        gameOver = false;
-        winningMark = BLANK;
-//    {
-//                {new Cell(0, 0), new Cell(1, 0), new Cell(2, 0)},
-//                {new Cell(0, 1), new Cell(1, 1), new Cell(2, 1)},
-//                {new Cell(0, 2), new Cell(1, 2), new Cell(2, 2)}
-//        };
+        initialiseBoard();
     }
 
     public Cell[][] getBoard() {
@@ -40,10 +32,10 @@ public class Board {
 
     }
 
-    public void initialiseBoard() {
+    private void initialiseBoard() {
         for (int row = 0; row < BOARD_WIDTH; row++) {
             for (int col = 0; col < BOARD_WIDTH; col++) {
-                board[row][col] = BLANK;
+                board[row][col] = new Cell(row, col);
             }
         }
     }
