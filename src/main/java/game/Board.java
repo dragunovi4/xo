@@ -1,27 +1,35 @@
 package game;
 
 import game.exc.IncorrectMoveException;
+import game.Cell;
+import static game.Mark.*;
 
 public class Board {
     public static final int BOARD_WIDTH = 3;
-
-    private final Cell[][] pole;
+    private final Cell[][] board;
+    private boolean crossTurn;
+    private boolean gameOver;
+    private Mark winningMark;
 
     public Board() {
-        pole = new Cell[][]{
-                {new Cell(0, 0), new Cell(1, 0), new Cell(2, 0)},
-                {new Cell(0, 1), new Cell(1, 1), new Cell(2, 1)},
-                {new Cell(0, 2), new Cell(1, 2), new Cell(2, 2)}
-        };
+        board = new Cell[BOARD_WIDTH][BOARD_WIDTH];
+        crossTurn = true;
+        gameOver = false;
+        winningMark = BLANK;
+//    {
+//                {new Cell(0, 0), new Cell(1, 0), new Cell(2, 0)},
+//                {new Cell(0, 1), new Cell(1, 1), new Cell(2, 1)},
+//                {new Cell(0, 2), new Cell(1, 2), new Cell(2, 2)}
+//        };
     }
 
-    public Cell[][] getPole() {
-        return pole;
+    public Cell[][] getBoard() {
+        return board;
     }
 
     public void sdelatHod(int x, int y, Mark getZnachenie) throws IncorrectMoveException {
 
-        Cell cell = pole[x][y];
+        Cell cell = board[x][y];
         Mark status = cell.getState();
 
         if (status == Mark.X || status == Mark.O) {
@@ -32,15 +40,11 @@ public class Board {
 
     }
 
-    public void vyvodPole () {
-        System.out.println("--------------------------------");
-        for (int i = 0; i < 3; i++) {
-            System.out.print(" |  ");
-            for (int j = 0; j < 3; j++) {
-                System.out.print(pole[i][j].getState().getMark() + "  |  ");
+    public void initialiseBoard() {
+        for (int row = 0; row < BOARD_WIDTH; row++) {
+            for (int col = 0; col < BOARD_WIDTH; col++) {
+                board[row][col] = BLANK;
             }
-            System.out.println();
-            System.out.println("---------------------------------");
         }
     }
 }

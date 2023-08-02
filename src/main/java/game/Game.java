@@ -13,7 +13,7 @@ public class Game {
     }
 
     public void play( boolean gameOver) {
-        pole.vyvodPole();
+        pole.initialiseBoard();
 
         boolean playerMove = true;
 
@@ -21,13 +21,13 @@ public class Game {
             if (playerMove ? gamer.moiHod(pole, Mark.X) : ai.moiHod(pole, Mark.O)) {
                 System.out.println(playerMove ? "Ваш ход" : "Ход Бота");
 
-                pole.vyvodPole();
+                pole.initialiseBoard();
 
-                gameOver = GameConditions.konecIgry(pole.getPole(), playerMove);
+                gameOver = GameConditions.konecIgry(pole.getBoard(), playerMove);
 
                 playerMove = !playerMove;
             }
         }
-        pole.vyvodPole();
+        pole.initialiseBoard();
     }
 }
