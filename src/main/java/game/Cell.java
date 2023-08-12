@@ -13,4 +13,5 @@ public class Cell {
     public void useSymbol(Mark symbol) {
         this.state = symbol;
     }
+    
 }

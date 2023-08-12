@@ -18,10 +18,10 @@ public abstract class Player {
                     throw new IncorrectMoveStateException("Некорректные координаты хода.");
                 }
 
-                pole.sdelatHod(
+                pole.placeMark(
                         (hod - 1) / Board.BOARD_WIDTH,
-                        (hod - 1) % Board.BOARD_WIDTH,
-                        state);
+                        (hod - 1) % Board.BOARD_WIDTH
+                );
 
                 korrectnyiHod = true;
 
