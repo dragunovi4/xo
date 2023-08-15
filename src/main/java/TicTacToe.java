@@ -1,4 +1,5 @@
 import game.Board;
+import game.GameConditions;
 import game.Mark;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 public class TicTacToe extends Application {
 
     private static GridPane gameBoard;
+
+    private static GameConditions gameConditions;
     private static Board board;
     private AnimationTimer gameTimer;
     private MenuBar menuBar;
@@ -109,7 +112,7 @@ public class TicTacToe extends Application {
         gameTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (board.isGameOver()) {
+                if (gameConditions.isGameOver()) {
                     endGame();
                 } else {
                     if (board.isCrossTurn()) {
