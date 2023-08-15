@@ -9,7 +9,8 @@ public class Cell {
     }
     public Mark getState() {
         return state;
-        }
+    }
+
     public void useSymbol(Mark symbol) {
         this.state = symbol;
     }

@@ -44,16 +44,27 @@ public class Board {
                 return false;
             }
             availableMoves--;
-            Cell.useSymbol(crossTurn ? X : O);
+            cell.useSymbol(crossTurn ? X : O);
             togglePlayer();
             checkWin(row, col);
-
         return true;
     }
 
-            private void togglePlayer() {
+    private void togglePlayer() {
             crossTurn = !crossTurn;
         }
+
+    public Mark getMarkAt(int row, int column) {
+        return board[row][column].getState();
+    }
+    public boolean isCrossTurn() {
+        return crossTurn;
+    }
+
+    public Mark getWinningMark() {
+        return winningMark;
+    }
+
     private void initialiseBoard() {
         for (int row = 0; row < BOARD_WIDTH; row++) {
             for (int col = 0; col < BOARD_WIDTH; col++) {

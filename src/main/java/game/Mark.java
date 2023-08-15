@@ -14,5 +14,4 @@ public enum Mark {
     public boolean isMarked() {
         return this != BLANK;
     }
-
 }
