@@ -1,8 +1,5 @@
 package game;
 
-import game.exc.IncorrectMoveException;
-import game.Cell;
-import game.Mark;
 import static game.Mark.*;
 
 public class Board {
@@ -23,8 +20,8 @@ public class Board {
     }
 
     public boolean isTileMarked(int row, int column) {
-
-        return board[row][column].isMarked();
+        Cell cell = board[row][column];
+        return cell.getState().isMarked();
     }
 
     public boolean placeMark(int row, int col) {
