@@ -23,20 +23,10 @@ public class Board {
     }
 
     public boolean isTileMarked(int row, int column) {
+
         return board[row][column].isMarked();
     }
 
-//    public void sdelatHod(int x, int y, Mark getZnachenie) throws IncorrectMoveException {
-//
-//        Cell cell = board[x][y];
-//        Mark status = cell.getState();
-//
-//        if (status == Mark.X || status == Mark.O) {
-//            throw new IncorrectMoveException("Выбранная клетка уже занята.");
-//        }
-//
-//        cell.useSymbol(getZnachenie);
-//    }
     public boolean placeMark(int row, int col) {
         Cell cell = board[row][col];
             if (row < 0 || row >= BOARD_WIDTH || col < 0 || col >= BOARD_WIDTH

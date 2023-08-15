@@ -10,7 +10,6 @@ public enum Mark {
     public String getMark() {
         return this.mark;
     }
-    //Маркировка клетки(уже занята)
     public boolean isMarked() {
         return this != BLANK;
     }

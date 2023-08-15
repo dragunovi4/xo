@@ -40,7 +40,7 @@ public class TicTacToe extends Application {
 
         private void initialiseTile() {
             this.setOnMouseClicked(e -> {
-                if (!board.isCrossTurn()) {             //isCrossTurn == cheihod
+                if (!board.isCrossTurn()) {
                     board.placeMark(this.row, this.col);
                     this.update();
                 }
