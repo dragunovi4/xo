@@ -1,6 +1,7 @@
 import game.Board;
 import game.GameCondition;
 import game.Mark;
+import game.RandomMovePlayer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -127,7 +128,7 @@ public class TicTacToe extends Application {
     private static void playAI() {
 
         //int[] move = MiniMaxCombined.getBestMove(board);
-        int[] move = ...;
+        int[] move = RandomMovePlayer.getBestMove(board);
 
         int row = move[0];
         int col = move[1];
