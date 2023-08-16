@@ -5,9 +5,9 @@ import static game.Mark.*;
 
 public class GameCondition {
     private Board board;
-    private Mark winningMark = BLANK;
-    private boolean gameOver = false;
-    private final int  availableMoves = BOARD_WIDTH * BOARD_WIDTH;
+    private static Mark winningMark = BLANK;
+    private static boolean gameOver = false;
+    private int availableMoves = BOARD_WIDTH * BOARD_WIDTH;
 
     public void checkWin(int row, int col) {
         int rowSum = 0;
@@ -68,10 +68,10 @@ public class GameCondition {
     public boolean anyMovesAvailable() {
         return availableMoves > 0;
     }
-    public boolean isGameOver() {
+    public static boolean isGameOver() {
         return gameOver;
     }
-    public Mark getWinningMark() {
+    public static Mark getWinningMark() {
         return winningMark;
     }
 }

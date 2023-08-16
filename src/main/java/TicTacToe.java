@@ -14,6 +14,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+
+
 /**
  * @author DavidHurst
  */
@@ -113,7 +115,7 @@ public class TicTacToe extends Application {
         gameTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (gameCondition.isGameOver()) {
+                if (GameCondition.isGameOver()) {
                     endGame();
                 } else {
                     if (board.isCrossTurn()) {
@@ -151,7 +153,7 @@ public class TicTacToe extends Application {
         gameTimer.stop();
         Alert gameOverAlert = new Alert(AlertType.INFORMATION, "",
                 new ButtonType("New Game"));
-        Mark winner = gameCondition.getWinningMark();
+        Mark winner = GameCondition.getWinningMark();
 
         gameOverAlert.setTitle("Game Over");
         gameOverAlert.setHeaderText(null);
