@@ -4,10 +4,10 @@ import static game.Mark.*;
 
 public class Board {
     public static final int BOARD_WIDTH = 3;
-    private final Cell[][] board = new Cell[BOARD_WIDTH][BOARD_WIDTH];
+    private static final Cell[][] board = new Cell[BOARD_WIDTH][BOARD_WIDTH];
     private boolean crossTurn = true;
     private final boolean gameOver = false;
-    private GameCondition gameConditions;
+
     private int availableMoves = BOARD_WIDTH * BOARD_WIDTH;
     public Board() {
         initialiseBoard();
@@ -26,13 +26,16 @@ public class Board {
             availableMoves--;
             cell.useSymbol(crossTurn ? X : O);
             togglePlayer();
-            gameConditions.checkWin(row, col);
+            GameCondition.checkWin(row, col);
         return true;
     }
     private void togglePlayer() {
             crossTurn = !crossTurn;
         }
-    public Mark getMarkAt(int row, int column) {
+    public int getWidth() {
+        return BOARD_WIDTH;
+    }
+    public static Mark getMarkAt(int row, int column) {
         return board[row][column].getState();
     }
     public boolean isCrossTurn() {
