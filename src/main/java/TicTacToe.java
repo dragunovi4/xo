@@ -63,22 +63,19 @@ public class TicTacToe extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
     public void start(Stage primaryStage) {
         root = new BorderPane();
 
-        root.setCenter(generateGUI());
+        //root.setCenter(generateGUI());
         root.setTop(initialiseMenu());
 
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Tic Tac Toe");
+        primaryStage.setTitle("XO");
         primaryStage.setScene(scene);
 
-        runGameLoop();
+//        runGameLoop();
+        resetGame();
 
         primaryStage.show();
     }
@@ -100,8 +97,8 @@ public class TicTacToe extends Application {
 
     private MenuBar initialiseMenu() {
         menuBar = new MenuBar();
-        gameMenu = new Menu("game");
-        newGameOption = new MenuItem("New Game");
+        gameMenu = new Menu("Игра");
+        newGameOption = new MenuItem("Начать заново");
 
         gameMenu.getItems().add(newGameOption);
         menuBar.getMenus().add(gameMenu);
@@ -168,4 +165,9 @@ public class TicTacToe extends Application {
         });
         gameOverAlert.show();
     }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }

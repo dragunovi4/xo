@@ -1,10 +1,12 @@
 package game;
 
+import java.util.List;
+
 import static game.Mark.*;
 
 public class Board {
     public static final int BOARD_WIDTH = 3;
-    private static final Cell[][] board = new Cell[BOARD_WIDTH][BOARD_WIDTH];
+    private final Cell[][] board = new Cell[BOARD_WIDTH][BOARD_WIDTH];
     private boolean crossTurn = true;
     private final boolean gameOver = false;
 
@@ -35,7 +37,7 @@ public class Board {
     public int getWidth() {
         return BOARD_WIDTH;
     }
-    public static Mark getMarkAt(int row, int column) {
+    public Mark getMarkAt(int row, int column) {
         return board[row][column].getState();
     }
     public boolean isCrossTurn() {
@@ -47,5 +49,9 @@ public class Board {
                 board[row][col] = new Cell(row, col);
             }
         }
+    }
+
+    public List<Cell> getFreeCells() {
+        return ...;
     }
 }
