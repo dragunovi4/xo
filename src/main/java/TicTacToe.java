@@ -5,6 +5,7 @@ import game.Mark;
 import game.RandomMovePlayer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -130,8 +131,6 @@ public class TicTacToe extends Application {
     }
 
     private static void playAI() {
-
-        //int[] move = MiniMaxCombined.getBestMove(board);
         Cell move = RandomMovePlayer.getBestMove(board);
 
         int row = move.getRow();
@@ -153,21 +152,30 @@ public class TicTacToe extends Application {
 
     private void endGame() {
         gameTimer.stop();
-        Alert gameOverAlert = new Alert(AlertType.INFORMATION, "",
-                new ButtonType("Новая игра"));
+        Alert gameOverAlert = new Alert(AlertType.INFORMATION, "", new ButtonType("Новая игра"));
         Mark winner = GameCondition.getWinningMark();
-
         gameOverAlert.setTitle("Конец игры!");
         gameOverAlert.setHeaderText(null);
+
         if (winner == Mark.BLANK) {
-            gameOverAlert.setContentText("Draw!");
+            gameOverAlert.setContentText("Ничья!");
         } else {
             gameOverAlert.setContentText(winner + " победил!");
         }
+
+        ButtonType newGameButton = new ButtonType("Новая игра");
+        ButtonType exitButton = new ButtonType("Выйти");
+        gameOverAlert.getButtonTypes().setAll(newGameButton, exitButton);
+
         gameOverAlert.setOnHidden(e -> {
-            gameOverAlert.close();
-            resetGame();
+            ButtonType result = gameOverAlert.getResult();
+            if (result == newGameButton) {
+                resetGame();
+                gameOverAlert.close();
+            } else if (result == exitButton) {
+                Platform.exit();
+            }
         });
-        gameOverAlert.show();
+        Platform.runLater(() -> gameOverAlert.showAndWait());
     }
 }

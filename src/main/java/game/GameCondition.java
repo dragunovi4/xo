@@ -14,14 +14,14 @@ public class GameCondition {
             rowSum += Board.getMarkAt(row, i).getMark();
         }
         if (calcWinner(rowSum) != BLANK) {
-            System.out.println(winningMark + " wins on row " + row);
+            System.out.println(winningMark + " Побеждает!");
         }
         rowSum = 0;
         for (int r = 0; r < BOARD_WIDTH; r++) {
             rowSum += Board.getMarkAt(r, col).getMark();
         }
         if (calcWinner(rowSum) != BLANK) {
-            System.out.println(winningMark + " wins on column " + col);
+            System.out.println(winningMark + " Побеждает!");
             return;
         }
 
@@ -30,8 +30,7 @@ public class GameCondition {
             rowSum += Board.getMarkAt(i, i).getMark();
         }
         if (calcWinner(rowSum) != BLANK) {
-            System.out.println(winningMark + " wins on the top-left to "
-                    + "bottom-right diagonal");
+            System.out.println(winningMark + " Побеждает!");
             return;
         }
 
@@ -41,13 +40,12 @@ public class GameCondition {
             rowSum += Board.getMarkAt(i, indexMax - i).getMark();
         }
         if (calcWinner(rowSum) != BLANK) {
-            System.out.println(winningMark + " wins on the top-right to "
-                    + "bottom-left diagonal.");
+            System.out.println(winningMark + " Побеждает!");
             return;
         }
         if (!anyMovesAvailable()) {
             gameOver = true;
-            System.out.println("Tie!");
+            System.out.println("Ничья!");
         }
     }
     private static Mark calcWinner(int rowSum) {
