@@ -1,4 +1,5 @@
 import game.Board;
+import game.Cell;
 import game.GameCondition;
 import game.Mark;
 import game.RandomMovePlayer;
@@ -78,7 +79,8 @@ public class TicTacToe extends Application {
         primaryStage.setTitle("Tic Tac Toe");
         primaryStage.setScene(scene);
 
-        runGameLoop();
+        //runGameLoop();
+        resetGame();
 
         primaryStage.show();
     }
@@ -100,8 +102,8 @@ public class TicTacToe extends Application {
 
     private MenuBar initialiseMenu() {
         menuBar = new MenuBar();
-        gameMenu = new Menu("game");
-        newGameOption = new MenuItem("New Game");
+        gameMenu = new Menu("ХО");
+        newGameOption = new MenuItem("Новая игра");
 
         gameMenu.getItems().add(newGameOption);
         menuBar.getMenus().add(gameMenu);
@@ -130,10 +132,10 @@ public class TicTacToe extends Application {
     private static void playAI() {
 
         //int[] move = MiniMaxCombined.getBestMove(board);
-        int[] move = RandomMovePlayer.getBestMove(board);
+        Cell move = RandomMovePlayer.getBestMove(board);
 
-        int row = move[0];
-        int col = move[1];
+        int row = move.getRow();
+        int col = move.getCol();
         board.placeMark(row, col);
         for (Node child : gameBoard.getChildren()) {
             if (GridPane.getRowIndex(child) == row
@@ -152,15 +154,15 @@ public class TicTacToe extends Application {
     private void endGame() {
         gameTimer.stop();
         Alert gameOverAlert = new Alert(AlertType.INFORMATION, "",
-                new ButtonType("New Game"));
+                new ButtonType("Новая игра"));
         Mark winner = GameCondition.getWinningMark();
 
-        gameOverAlert.setTitle("Game Over");
+        gameOverAlert.setTitle("Конец игры!");
         gameOverAlert.setHeaderText(null);
         if (winner == Mark.BLANK) {
             gameOverAlert.setContentText("Draw!");
         } else {
-            gameOverAlert.setContentText(winner + " wins!");
+            gameOverAlert.setContentText(winner + " победил!");
         }
         gameOverAlert.setOnHidden(e -> {
             gameOverAlert.close();

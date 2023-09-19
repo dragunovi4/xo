@@ -1,13 +1,21 @@
 package game;
 public class Cell {
-    private static Mark state = Mark.BLANK;
-    private final int x;
-    private final int y;
+    private Mark state = Mark.BLANK;
+    private int row;
+    private int col;
+
     public Cell(int x, int y) {
-        this.x = x;
-        this.y = y;
+        row = x;
+        col = y;
     }
-    public static Mark getState() {
+    public int getRow(){
+        return row;
+    }
+
+    public int getCol(){
+        return col;
+    }
+    public Mark getState() {
         return state;
     }
     public void useSymbol(Mark symbol) {

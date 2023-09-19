@@ -1,5 +1,9 @@
 package game;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import static game.Mark.*;
 
 public class Board {
@@ -47,5 +51,17 @@ public class Board {
                 board[row][col] = new Cell(row, col);
             }
         }
+    }
+    public List<Cell> getFreeCells() {
+        List<Cell> freeCell = new ArrayList<>();
+
+        for (int row = 0; row < BOARD_WIDTH; row++) {
+            for (int col = 0; col < BOARD_WIDTH; col++){
+                if (!isTileMarked(row,col)) {
+                    freeCell.add(board[row][col]);
+                }
+            }
+        }
+        return freeCell;
     }
 }

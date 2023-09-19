@@ -1,11 +1,19 @@
 package game;
 
 import java.util.Random;
+import java.util.List;
+
 
 public class RandomMovePlayer {
     static Random random = new Random();
-    public static int[] getBestMove(Board board) {
-        //return new int[] {0, 0};
-        return new int[]{random.nextInt(2) + 1 , random.nextInt(2) + 1};
+    public static Cell getBestMove(Board board) {
+        List<Cell> freeCells = board.getFreeCells();
+        if (freeCells.isEmpty()) {
+            return null;
+        } else {
+            int randomIndex = random.nextInt(freeCells.size());
+            Cell randomCell = freeCells.get(randomIndex);
+            return randomCell;
+        }
     }
 }
