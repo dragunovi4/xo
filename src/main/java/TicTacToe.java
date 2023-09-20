@@ -77,11 +77,11 @@ public class TicTacToe extends Application {
         root.setTop(initialiseMenu());
 
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Tic Tac Toe");
+        primaryStage.setTitle("XO");
         primaryStage.setScene(scene);
 
-        //runGameLoop();
-        resetGame();
+        runGameLoop();
+        //resetGame();
 
         primaryStage.show();
     }
@@ -146,13 +146,24 @@ public class TicTacToe extends Application {
         }
     }
     private void resetGame() {
+        board = new Board();
+        gameBoard.getChildren().clear();
+        for (int row = 0; row < board.BOARD_WIDTH; row++) {
+            for (int col = 0; col < board.BOARD_WIDTH; col++) {
+                Tile tile = new Tile(row, col, board.getMarkAt(row, col));
+                GridPane.setConstraints(tile, col, row);
+                gameBoard.getChildren().add(tile);
+            }
+        }
+        gameCondition = new GameCondition();
+        gameTimer.start();
         root.setCenter(generateGUI());
         runGameLoop();
     }
 
     private void endGame() {
         gameTimer.stop();
-        Alert gameOverAlert = new Alert(AlertType.INFORMATION, "", new ButtonType("Новая игра"));
+        Alert gameOverAlert = new Alert(AlertType.INFORMATION, "", new ButtonType("Новая игра"), new ButtonType("Выйти") );
         Mark winner = GameCondition.getWinningMark();
         gameOverAlert.setTitle("Конец игры!");
         gameOverAlert.setHeaderText(null);
@@ -163,19 +174,15 @@ public class TicTacToe extends Application {
             gameOverAlert.setContentText(winner + " победил!");
         }
 
-        ButtonType newGameButton = new ButtonType("Новая игра");
-        ButtonType exitButton = new ButtonType("Выйти");
-        gameOverAlert.getButtonTypes().setAll(newGameButton, exitButton);
-
         gameOverAlert.setOnHidden(e -> {
             ButtonType result = gameOverAlert.getResult();
-            if (result == newGameButton) {
+            if (result == ButtonType.OK) {
                 resetGame();
                 gameOverAlert.close();
-            } else if (result == exitButton) {
+            } else if (result == ButtonType.CANCEL) {
                 Platform.exit();
             }
         });
-        Platform.runLater(() -> gameOverAlert.showAndWait());
+        Platform.runLater(() -> gameOverAlert.show());
     }
 }

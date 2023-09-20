@@ -12,7 +12,7 @@ public class Board {
     private boolean crossTurn = true;
     private final boolean gameOver = false;
 
-    private int availableMoves = BOARD_WIDTH * BOARD_WIDTH;
+    private int availableMoves = 9;
     public Board() {
         initialiseBoard();
     }
