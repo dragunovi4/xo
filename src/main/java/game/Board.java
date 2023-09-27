@@ -10,7 +10,7 @@ public class Board {
     public static final int BOARD_WIDTH = 3;
     private static final Cell[][] board = new Cell[BOARD_WIDTH][BOARD_WIDTH];
     private boolean crossTurn = true;
-    private final boolean gameOver = false;
+    private boolean gameOver;
 
     private int availableMoves = 9;
     public Board() {
@@ -36,9 +36,7 @@ public class Board {
     private void togglePlayer() {
             crossTurn = !crossTurn;
         }
-    public int getWidth() {
-        return BOARD_WIDTH;
-    }
+
     public static Mark getMarkAt(int row, int column) {
         return board[row][column].getState();
     }
@@ -54,7 +52,6 @@ public class Board {
     }
     public List<Cell> getFreeCells() {
         List<Cell> freeCell = new ArrayList<>();
-
         for (int row = 0; row < BOARD_WIDTH; row++) {
             for (int col = 0; col < BOARD_WIDTH; col++){
                 if (!isTileMarked(row,col)) {

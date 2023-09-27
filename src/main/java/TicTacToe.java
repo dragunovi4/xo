@@ -16,6 +16,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
+
+import static game.Board.BOARD_WIDTH;
 
 
 /**
@@ -91,8 +96,8 @@ public class TicTacToe extends Application {
         board = new Board();
         gameBoard.setAlignment(Pos.CENTER);
 
-        for (int row = 0; row < board.BOARD_WIDTH; row++) {
-            for (int col = 0; col < board.BOARD_WIDTH; col++) {
+        for (int row = 0; row < BOARD_WIDTH; row++) {
+            for (int col = 0; col < BOARD_WIDTH; col++) {
                 Tile tile = new Tile(row, col, board.getMarkAt(row, col));
                 GridPane.setConstraints(tile, col, row);
                 gameBoard.getChildren().add(tile);
@@ -147,19 +152,20 @@ public class TicTacToe extends Application {
     }
     private void resetGame() {
         board = new Board();
-        gameBoard.getChildren().clear();
-        for (int row = 0; row < board.BOARD_WIDTH; row++) {
-            for (int col = 0; col < board.BOARD_WIDTH; col++) {
-                Tile tile = new Tile(row, col, board.getMarkAt(row, col));
-                GridPane.setConstraints(tile, col, row);
-                gameBoard.getChildren().add(tile);
+        int row = 0;
+        int col = 0;
+        Cell cell = new Cell(row,col);
+        for (row = 0; row < BOARD_WIDTH; row++) {
+            for (col = 0; col < BOARD_WIDTH; col++){
+                if (cell.getState() != Mark.BLANK) {
+                    cell.useSymbol(Mark.BLANK);
+                }
             }
         }
-        gameCondition = new GameCondition();
-        gameTimer.start();
         root.setCenter(generateGUI());
         runGameLoop();
     }
+
 
     private void endGame() {
         gameTimer.stop();
@@ -179,7 +185,7 @@ public class TicTacToe extends Application {
             if (result == ButtonType.OK) {
                 resetGame();
                 gameOverAlert.close();
-            } else if (result == ButtonType.CANCEL) {
+            } else if (result == ButtonType.CLOSE) {
                 Platform.exit();
             }
         });
