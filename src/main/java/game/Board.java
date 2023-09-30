@@ -10,9 +10,7 @@ public class Board {
     public static final int BOARD_WIDTH = 3;
     private static final Cell[][] board = new Cell[BOARD_WIDTH][BOARD_WIDTH];
     private boolean crossTurn = true;
-    private boolean gameOver;
 
-    private int availableMoves = 9;
     public Board() {
         initialiseBoard();
     }
@@ -21,21 +19,17 @@ public class Board {
         Cell cell = board[row][column];
         return cell.getState().isMarked();
     }
-    public boolean placeMark(int row, int col) {
+    public void placeMark(int row, int col) {
         Cell cell = board[row][col];
-            if (row < 0 || row >= BOARD_WIDTH || col < 0 || col >= BOARD_WIDTH
-                    || isTileMarked(row, col) || gameOver) {
-                return false;
-            }
-            availableMoves--;
-            cell.useSymbol(crossTurn ? X : O);
-            togglePlayer();
-            GameCondition.checkWin(row, col);
-        return true;
-    }
-    private void togglePlayer() {
-            crossTurn = !crossTurn;
+        if (isTileMarked(row, col)) {
+            return;
         }
+
+        cell.useSymbol(crossTurn ? X : O);
+        crossTurn = !crossTurn;
+
+        GameCondition.checkWin(row, col);
+    }
 
     public static Mark getMarkAt(int row, int column) {
         return board[row][column].getState();

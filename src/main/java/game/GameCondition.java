@@ -6,17 +6,18 @@ import static game.Mark.*;
 public class GameCondition {
     private static Mark winningMark = BLANK;
     private static boolean gameOver = false;
-    private static int availableMoves = BOARD_WIDTH * BOARD_WIDTH;
+    private static int availableMoves;
+
+    public static void resetState() {
+        availableMoves = BOARD_WIDTH * BOARD_WIDTH;
+        gameOver = false;
+    }
 
     public static void checkWin(int row, int col) {
+        availableMoves--;
+
+        // оптимизировать код убрав общую логику в отдельную функцию (Роман, ебани покороче)
         int rowSum = 0;
-        for (int i = 0; i < BOARD_WIDTH; i++) {
-            rowSum += Board.getMarkAt(row, i).getMark();
-        }
-        if (calcWinner(rowSum) != BLANK) {
-            System.out.println(winningMark + " Побеждает!");
-        }
-        rowSum = 0;
         for (int r = 0; r < BOARD_WIDTH; r++) {
             rowSum += Board.getMarkAt(r, col).getMark();
         }
@@ -43,9 +44,11 @@ public class GameCondition {
             System.out.println(winningMark + " Побеждает!");
             return;
         }
+
         if (!anyMovesAvailable()) {
             gameOver = true;
             System.out.println("Ничья!");
+            winningMark = BLANK;
         }
     }
     private static Mark calcWinner(int rowSum) {

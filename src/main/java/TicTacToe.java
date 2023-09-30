@@ -85,8 +85,7 @@ public class TicTacToe extends Application {
         primaryStage.setTitle("XO");
         primaryStage.setScene(scene);
 
-        runGameLoop();
-        //resetGame();
+        resetGame();
 
         primaryStage.show();
     }
@@ -94,6 +93,7 @@ public class TicTacToe extends Application {
     private static GridPane generateGUI() {
         gameBoard = new GridPane();
         board = new Board();
+
         gameBoard.setAlignment(Pos.CENTER);
 
         for (int row = 0; row < BOARD_WIDTH; row++) {
@@ -123,7 +123,7 @@ public class TicTacToe extends Application {
         gameTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if (GameCondition.isGameOver()) {
+                if (GameCondition.isGameOver() || !GameCondition.anyMovesAvailable()) {
                     endGame();
                 } else {
                     if (board.isCrossTurn()) {
@@ -151,44 +151,31 @@ public class TicTacToe extends Application {
         }
     }
     private void resetGame() {
-        board = new Board();
-        int row = 0;
-        int col = 0;
-        Cell cell = new Cell(row,col);
-        for (row = 0; row < BOARD_WIDTH; row++) {
-            for (col = 0; col < BOARD_WIDTH; col++){
-                if (cell.getState() != Mark.BLANK) {
-                    cell.useSymbol(Mark.BLANK);
-                }
-            }
-        }
+        GameCondition.resetState();
         root.setCenter(generateGUI());
         runGameLoop();
     }
 
-
     private void endGame() {
         gameTimer.stop();
-        Alert gameOverAlert = new Alert(AlertType.INFORMATION, "", new ButtonType("Новая игра"), new ButtonType("Выйти") );
+        GameCondition.resetState();
+
+        Alert gameOverAlert = new Alert(AlertType.INFORMATION, "", new ButtonType("Новая игра", ButtonBar.ButtonData.YES), new ButtonType("Выйти", ButtonBar.ButtonData.NO) );
         Mark winner = GameCondition.getWinningMark();
         gameOverAlert.setTitle("Конец игры!");
         gameOverAlert.setHeaderText(null);
 
-        if (winner == Mark.BLANK) {
-            gameOverAlert.setContentText("Ничья!");
-        } else {
-            gameOverAlert.setContentText(winner + " победил!");
-        }
+        gameOverAlert.setContentText(winner == Mark.BLANK ? "Ничья!" : winner + " победил!");
 
         gameOverAlert.setOnHidden(e -> {
             ButtonType result = gameOverAlert.getResult();
-            if (result == ButtonType.OK) {
+            if (result.getButtonData() == ButtonType.YES.getButtonData()) {
                 resetGame();
-                gameOverAlert.close();
-            } else if (result == ButtonType.CLOSE) {
+                gameOverAlert.hide();
+            } else if (result.getButtonData() == ButtonType.NO.getButtonData()) {
                 Platform.exit();
             }
         });
-        Platform.runLater(() -> gameOverAlert.show());
+        Platform.runLater(gameOverAlert::show);
     }
 }

@@ -5,3 +5,4 @@
 target/
 *.iml
 out/
+javafx-sdk-17.0.8
